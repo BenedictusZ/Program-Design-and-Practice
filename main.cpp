@@ -279,6 +279,7 @@ int main(){
 
 
 //4-3 二分法求方程的根
+/*
 double EPS=1e-6;
 double f(double x){return x*x*x-5*x*x+10*x-80;}
 int main(){
@@ -296,4 +297,4 @@ int main(){
 	printf("%.8f\n",root);
 	printf("%d",triedTimes);
 	return 0;
-}
+}*/
