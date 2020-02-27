@@ -213,6 +213,7 @@ int main(){
 }
 */
 
+
 //3-2 爬楼梯
 
 /*int N;
@@ -254,4 +255,45 @@ void up_and_down(int n)
 	printf("LEVEL %d: n location %p\n", n, &n); // #2
 }*/
 
-//4-2
+//4-2 二分查找原理
+/*int LowerBound(const int a[],int size,int p){
+	int L=0;
+	int R=size-1;
+	int lastPos=-1;
+	while (L<=R){
+		int mid=L+(R-L)/2;
+		if(a[mid]>=p)
+			R=mid-1;
+		else{
+			lastPos=mid;
+			L=mid+1;
+		}
+	}
+	return lastPos;
+}
+int main(){
+	int arr[]={1,6,3,54,8,0,2,7,2};
+	int p=LowerBound(arr,1,6);
+	cout<<p<<endl;
+}*/
+
+
+//4-3 二分法求方程的根
+double EPS=1e-6;
+double f(double x){return x*x*x-5*x*x+10*x-80;}
+int main(){
+	double root,x1=0,x2=100,y;
+	root=x1+(x2-x1)/2;
+	int triedTimes=1;
+	y=f(root);
+	while (fabs(y)>EPS){
+		if (y>0) x2=root;
+		else     x1=root;
+		root=x1+(x2-x1)/2;
+		y=f(root);
+		triedTimes++;
+	}
+	printf("%.8f\n",root);
+	printf("%d",triedTimes);
+	return 0;
+}
