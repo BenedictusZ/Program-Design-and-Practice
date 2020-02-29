@@ -298,3 +298,42 @@ int main(){
 	printf("%d",triedTimes);
 	return 0;
 }*/
+
+//4-4
+
+//5-2 快速排序
+/*void swap(int & a,int & b){
+	int temp=a;
+	a=b;
+	b=temp;
+}
+void QuickSort(int a[],int s,int e){
+	if (s>=e)
+		return;
+	int k=a[s];
+	int i=s,j=e;
+	while (i!=j){
+		while (j>i&&a[j]>=k)
+			--j;
+		swap(a[i],a[j]);
+		while (i<j&&a[i]<=k)
+			++i;
+		swap(a[i],a[j]);
+	}
+	QuickSort(a,s,i-1);
+	QuickSort(a,i+1,e);
+}
+int main(){
+	int a[]={93,27,30,2,8,12,2,8,30,89};
+	int size=sizeof(a)/sizeof(int);
+	QuickSort(a,0,size-1);
+	for ( int i = 0; i < size; i++ ) {
+		cout<<a[i]<<",";
+	cout<<endl;
+	return 0;
+	}
+}*/
+
+//5-3 输出前m大的数
+
+//5-4 求排列的逆序数
