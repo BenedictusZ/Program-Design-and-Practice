@@ -4,6 +4,7 @@
 #include <string>
 #include <cstring>
 #include <cmath>
+#include <algorithm>
 using namespace std;
 //#define N 21252
 
@@ -40,11 +41,10 @@ int main(){
 }*/
 
 //1-3称硬币
-/*
-char Left[3][7];
+/*char Left[3][7];
 char Right[3][7];
 char Result[3][7];
-//bool IsFake(char c, bool light);
+bool IsFake(char c, bool light);
 
 bool IsFake(char c, bool light){
 	for (int i = 0; i < 3; ++i) {
@@ -74,7 +74,26 @@ int main(){
 	}
 	}
 	return 0;
+}
+bool IsFake(char c,bool light){
+	for ( int i = 0; i < 3; ++i ) {
+		char * pLeft,*pRight;
+		if(light){
+			pLeft=Left[i];
+			pRight=Right[i];
+		} else{
+			pLeft=Right[i];
+			pRight=Left[i];
+		}
+		switch (result[i][0]) {
+
+		}{
+
+		}
+	}
 }*/
+
+
 
 //1-4熄灯问题
 /*
@@ -337,3 +356,123 @@ int main(){
 //5-3 输出前m大的数
 
 //5-4 求排列的逆序数
+
+//6-1 数字三角形
+/*
+#define MAX 101
+int D[MAX][MAX];
+int n;
+int maxSum[MAX][MAX];
+int MaxSum(int i,int j){
+	if(maxSum[i][j]!=-1)
+		return maxSum[i][j];
+	if(i==n)
+		maxSum[i][j]=D[i][j];
+	else{
+		int x=MaxSum(i+1,j);
+		int y=MaxSum(i+1,j+1);
+		maxSum[i][j]=max(x,y)+D[i][j];
+	}
+	return maxSum[i][j];
+}
+int main(){
+	int i,j;
+	cin>>n;
+	for ( int k = 0; k <= n ; k++ ) {
+		cin >> D[i][j];
+		maxSum[i][j]=-1;
+	}
+	cout<<MaxSum(1,1)<<endl;
+}*/
+
+//6-2 数字三角形2
+/*#define MAX 101
+int D[MAX][MAX];
+int n;int * maxSum;
+int main(){
+	int i,j;
+	cin>>n;
+	for ( int i = 0; i <= n; i++ ) {
+		for ( int j = 0; j <= i; j++ ) {
+			cin>>D[i][j];
+		}
+		maxSum=D[n];
+		for ( int i = n-1; i >= 1; --i ) {
+			for ( int j = 0; j <= i; ++j ) {
+				maxSum[j]=max(maxSum[j],maxSum[j+1])+D[i][j];
+			cout<<maxSum[1]<<endl;
+			}
+		}
+	}
+}*/
+
+//6 最长上升子序列
+/*
+const int MAXN=1010;
+int a[MAXN];int maxLen[MAXN];
+int main(){
+	int N;cin>>N;
+	for ( int i = 1; i < N; ++i ) {
+		cin>>a[i];
+		maxLen[i]=1;
+	}
+	for ( int i = 2; i <=N ; ++i ) {
+		for ( int j = 1; j < i; ++j ) {
+			if (a[i]>a[j])
+				maxLen[i]=max(maxLen[i],maxLen[j]+1);
+		}
+		cout<<* max_element(maxLen+1,maxLen+N+1);
+		return 0;
+	}
+}
+*/
+
+//7-3 神奇的口袋
+/*int a[30];int N;
+int Ways(int w, int k){//从前k种物品中选择一些，凑成体积w的做法数目
+	if (w==0) return 1;
+	if (k<=0) return 0;
+	return Ways(w,k-1)+Ways(w-a[k],k-1);
+}
+int main(){
+	cin>>N;
+	for ( int i = 1; i <= N; ++i )
+		cin>>a[i];
+	cout<<Ways(40,N);
+	return 0;
+
+}*/
+
+//2 八皇后
+int N;
+int queenPos[100];
+
+void NQueen(int k);
+
+int main() {
+	cin >> N;
+	NQueen(0);//从第0行开始摆放皇后
+	return 0;
+}
+
+void NQueen(int k) {
+	int i;
+	if ( k == N ) {
+		for ( i = 0; i < N; i++ )
+			cout << queenPos[i] + 1 << " ";
+		cout << endl;
+		return;
+	}
+	for ( int i = 0; i < N; i++ ) {
+		int j;
+		for ( j = 0; j < k; j++ ) {
+			if ( queenPos[j] == i || abs(queenPos[j] - i) == abs(k - j)) {
+				break;
+			}
+		}
+		if ( j == k ) {
+			queenPos[k] = i;
+			NQueen(k + 1);
+		}
+	}
+}
